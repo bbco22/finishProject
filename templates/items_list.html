@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static humanize %}
+
+{% block content-head %}
+    <div style="background-image: url('{% static category.image %}'); padding: 150px">
+        <h1 class="text-light"><span>{{ category.name }}</span></h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+            <div class="col">
+                <div class="card h-100">
+                    <a class="card" href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.cost }} $</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
