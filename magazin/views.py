@@ -35,7 +35,7 @@ class ShowProducts(View):
             print(products)
         return render(request,
                       "items_list.html",
-                      {"items": MediaDocsFiler(request.GET, products),
+                      {"items": MediaDocsFiler(request.GET,products),
                        "category": category,
                        "categories": categories,
                        "products": products}
