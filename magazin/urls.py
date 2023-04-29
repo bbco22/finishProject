@@ -5,6 +5,8 @@ from . import views
 urlpatterns = [
     path("", views.HomeView.as_view(), name="home"),
 
+    path("api/v0/", include("magazin.api.v0.urls")),
+
     path("cart/", views.ShowCartView.as_view(), name="cart"),
 
 
