@@ -13,3 +13,5 @@ class MediaDocsFiler(django_filters.FilterSet):
             Q(name__icontains=value) |
             Q(about__icontains=value)
         )
+    print(search)
+

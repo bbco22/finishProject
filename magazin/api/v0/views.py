@@ -1,6 +1,9 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework import generics
+
 
 from .serializers import ProductsSerializer, DetailProductSerializer, CategoriesSerializer, \
     OrdersSerializer, OrderItemSerializer
@@ -32,12 +35,20 @@ class ListCategoryAPIView(APIView):
         serializer = CategoriesSerializer(categories, many=True)
         return Response(serializer.data)
 
-class ListOrdersAPIView(APIView):
+class OrdersListAPIViewGEN(generics.ListAPIView):
+    """смотрим и создаём заказы"""
 
-    def get(self, request):
-        orders = Order.objects.all()
-        serializer = OrdersSerializer( orders, many=True)
-        return Response(serializer.data)
+    queryset = Order.objects.all()
+    serializer_class = OrdersSerializer
+
+
+class OrderControlAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrdersSerializer
+    lookup_url_kwarg = "order_id"
+    lookup_field = "id"
+
+
 
 
 
