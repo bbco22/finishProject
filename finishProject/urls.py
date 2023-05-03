@@ -25,9 +25,11 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("orders/", include("orders.url"), name="orders"),
     path("", include("magazin.urls")),
-    path("account/register", user_views.register, name="registration"),
+    path("account/register", user_views.register, name="sign_up"),
     path("account/", include("django.contrib.auth.urls")),
+    path("activate/<uid>/<token>/", user_views.activate, name="activate"),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

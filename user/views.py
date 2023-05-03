@@ -11,7 +11,7 @@ from .models import User
 
 def create_message(user) -> str:
     message = render_to_string(
-        "email_confirmation.html",
+        "registration/email_confirm.html",
         {
             "domain": "127.0.0.1:8000",
             "user": user,
@@ -41,7 +41,7 @@ def register(request):
             return redirect("home")
     else:
         form = UserRegistrationForm()
-    return render(request, "registration", {"form": form})
+    return render(request, "registration/sign_up.html", {"form": form})
 
 
 def activate(request, uid: str, token: str):
