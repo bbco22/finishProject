@@ -1,7 +1,7 @@
 version: "3.10"
 
 services:
-  localhost:
+  db:
     image: postgres
     restart: always
     environment:
@@ -14,7 +14,7 @@ services:
 
   finishProject:
     build: .
-    image: finishproject:v0.1
+    image: finishproject:v0.2
     command: runserver 0.0.0.0:8000
     volumes:
       - "./static:/app/static:ro"
@@ -26,6 +26,6 @@ services:
       - POSTGRES_USER=test_django_app_user
       - POSTGRES_PASSWORD=gfhjkm1
     depends_on:
-         - localhost
+         - db
 
 

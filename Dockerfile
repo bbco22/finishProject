@@ -4,10 +4,10 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /app
 
-COPY requirements.txt /app/
+COPY requirements.txt .
 
 COPY . .
 
 EXPOSE 8000
 
-ENTRYPOINT ["python3", "manage.py"]
+ENTRYPOINT ["python", "manage.py"]
