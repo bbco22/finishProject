@@ -17,6 +17,7 @@ class MenuView(View):
 
 class HomeView(View):
 
+
     def get(self,request):
         categories1 = Category.objects.get(id=1)
         categories2 = Category.objects.get(id=2)
@@ -88,4 +89,26 @@ class ShowCartView(View):
         cart = Cart(request)
         return render(request, "cart.html", {"cart": cart})
 
+
+class AboutView(View):
+    def get(self, request):
+        return render(request, "footer/about.html")
+
+class OfertaView(View):
+
+    def get(self, request):
+        return render( request, "footer/oferta.html")
+
+class OplataView(View):
+    def get(self,request):
+        return render( request, "footer/oplata.html")
+
+
+class Oplata2View(View):
+    def get(self, request):
+        return render(request, "footer/oplata2.html")
+
+class DostavkaView(View):
+    def get(self, request):
+        return render(request, "footer/dostavka.html")
 

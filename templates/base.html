@@ -96,8 +96,8 @@
             <div class="col-6 col-lg-2 offset-lg-1 mb-3">
                 <h5>О магазине</h5>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="№">О нас</a></li>
-                    <li class="mb-2"><a href="№">Договор публичной офёрты</a></li>
+                    <li class="mb-2"><a href="{% url "about" %}">О нас</a></li>
+                    <li class="mb-2"><a href="{% url "oferta" %}">Договор публичной офёрты</a></li>
                     <li class="mb-2"><a href="#">Отзывы о магазине</a></li>
                     <li class="mb-2"><a href="#">Политика конфиденциальности</a></li>
                 </ul>
@@ -106,8 +106,8 @@
             <div class="col-6 col-lg-2 mb-3">
                 <h5>Оплата</h5>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="#">Оплата при получении</a></li>
-                    <li class="mb-2"><a href="#">Предварительная оплата</a></li>
+                    <li class="mb-2"><a href="{% url "oplata" %}">Оплата при получении</a></li>
+                    <li class="mb-2"><a href="{% url "oplata2" %}">Предварительная оплата</a></li>
                     <li class="mb-2"><a href="#">Счёт для юридических лиц</a></li>
                 </ul>
             </div>
@@ -116,7 +116,7 @@
                 <h5>Доставка</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2"><a href="#">Пункты выдачи</a></li>
-                    <li class="mb-2"><a href="#">Доставка по Минску</a></li>
+                    <li class="mb-2"><a href="{% url "dostavka" %}">Доставка по Минску</a></li>
                     <li class="mb-2"><a href="#">Доставка по Беларуси</a></li>
                 </ul>
             </div>
