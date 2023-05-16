@@ -28,6 +28,7 @@ urlpatterns = [
     path("account/register", user_views.register, name="sign_up"),
     path("account/", include("django.contrib.auth.urls")),
     path("activate/<uid>/<token>/", user_views.activate, name="activate"),
+
 ]
 
 

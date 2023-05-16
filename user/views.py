@@ -54,3 +54,6 @@ def activate(request, uid: str, token: str):
         return HttpResponse("<h1>Вы можете войти<h1>")
 
     return HttpResponse("<h1>Неверный токен!!!<h1>")
+
+
+

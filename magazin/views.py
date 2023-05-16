@@ -4,7 +4,7 @@ from .models import Category, Product
 from .filters import MediaDocsFiler
 from .cart import Cart
 from .forms import CartAddProductForm
-from django.views.decorators.http import require_POST
+
 
 
 class MenuView(View):
@@ -19,15 +19,11 @@ class HomeView(View):
 
 
     def get(self,request):
-        categories1 = Category.objects.get(id=1)
-        categories2 = Category.objects.get(id=2)
-        categories3 = Category.objects.get(id=3)
+        categories = Category.objects.all()
 
         return render(request,
                       "home.html",
-                      {"categories1": categories1,
-                       "categories2": categories2,
-                       "categories3": categories3}
+                      {"categories": categories}
                       )
 
 
