@@ -18,7 +18,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from user import views as user_views
-from magazin import views
 
 
 urlpatterns = [
@@ -28,7 +27,6 @@ urlpatterns = [
     path("account/register", user_views.register, name="sign_up"),
     path("account/", include("django.contrib.auth.urls")),
     path("activate/<uid>/<token>/", user_views.activate, name="activate"),
-
 ]
 
 

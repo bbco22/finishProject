@@ -8,16 +8,40 @@ services:
       - POSTGRES_DB=finishProject
       - POSTGRES_USER=test_django_app_user
       - POSTGRES_PASSWORD=gfhjkm1
+      - POSTGRES_HOST=postgres-db
+      - POSTGRES_PORT=5432
     volumes:
-      - /data/db/var/lib/postgresql/data
+      - "/pg_data:/var/lib/postgresql/data"
+
+  django-init:
+    build: .
+    image: finishproject:v0.6
+    environment:
+      - POSTGRES_DB=finishProject
+      - POSTGRES_USER=test_django_app_user
+      - POSTGRES_PASSWORD=gfhjkm1
+      - POSTGRES_HOST=postgres-db
+      - POSTGRES_PORT=5432
+    command: python manage.py migrate
+    volumes:
+      - "./static:/var/www/static:ro"
+      - "./media:/var/www/media"
+    depends_on:
+      - postgres-db
+
+  redis-cache:
+    image: redis
+
 
 
   finishProject:
     build: .
-    image: finishproject:v0.5
+    image: finishproject:v0.6
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: on-failure
     volumes:
-      - "./static:/app/static:ro"
-      - "./media:/app/media"
+      - "./static:/var/www/static:ro"
+      - "./media:/var/www/media:ro"
     ports:
       - "8080:8000"
     environment:
@@ -27,6 +51,6 @@ services:
       - POSTGRES_HOST=postgres-db
       - POSTGRES_PORT=5432
     depends_on:
-         - postgres-db
+         - django-init
 
 

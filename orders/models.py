@@ -10,6 +10,8 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     payment = models.CharField(choices=PAYMENT_TYPE, max_length=5)
+#    STATUS_TYPE = (("created", "Создан"), ("processing", " В обработке"), ("shipped", "В Доставке"), ("delivered", "Доставлен"))
+#   status = models.CharField(choices=STATUS_TYPE, max_length=10)
 
     class Meta:
         ordering = ('-created',)
