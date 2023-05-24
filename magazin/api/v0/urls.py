@@ -1,5 +1,6 @@
-from django.urls import path, include
-from django.views.generic import TemplateView
+from django.urls import path
+from rest_framework.routers import DefaultRouter
+
 from . import views
 
 # /api/v0
@@ -14,3 +15,4 @@ urlpatterns = [
     path("order/<int:order_id>/", views.OrderControlAPIView.as_view()),
 
 ]
+

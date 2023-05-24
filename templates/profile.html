@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content-head %}
+    <div class="mb-4 bg-light rounded-3">
+        <div class="container-fluid py-3 text-center">
+            <h1 class="display-5 fw-bold">Добро пожаловать, {{ request.user }}</h1>
+            <p></p>
+        </div>
+    </div>
+
+    {% for order in orders %}
+    <div class="card">
+        <div class="card-header">
+            <p> Номер заказа: {{ order.id }}</p>
+        </div>
+        <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Картинка</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Стоимость</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                {% for i in product %}
+                    <td>
+                        <a href="{{ i.product.get_absolute_url }}">
+                            <img src="{{ i.product.image.url }}" width="15%" height="auto" alt="">
+                        </a>
+                    </td>
+                    <td>{{ i.product.name }}</td>
+                    <td>{{ i.quantity }}</td>
+                    <td>{{ i.product.cost }} $</td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+{% endblock %}

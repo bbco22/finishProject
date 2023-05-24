@@ -25,10 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv("DJANGO_DEBUG", "1") == "1"
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
+if DEBUG:
+    INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     "magazin",
     "orders",
     "crispy_forms",
+    "crispy_bootstrap5",
     "rest_framework",
 ]
 
@@ -151,6 +154,10 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication"
     ]
 }
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 EMAIL_HOST = "smtp.mail.ru"
 EMAIL_PORT = 2525

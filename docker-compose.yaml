@@ -15,17 +15,20 @@ services:
 
   django-init:
     build: .
-    image: finishproject:v0.6
+    image: finishproject:v0.5
     environment:
       - POSTGRES_DB=finishProject
       - POSTGRES_USER=test_django_app_user
       - POSTGRES_PASSWORD=gfhjkm1
       - POSTGRES_HOST=postgres-db
       - POSTGRES_PORT=5432
-    command: python manage.py migrate
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_PASSWORD=password
     volumes:
-      - "./static:/var/www/static:ro"
-      - "./media:/var/www/media"
+      - ./run.sh:/app/run.sh
+    command: /bin/sh /app/run.sh
+
     depends_on:
       - postgres-db
 
@@ -36,7 +39,7 @@ services:
 
   finishProject:
     build: .
-    image: finishproject:v0.6
+    image: finishproject:v0.5
     command: python manage.py runserver 0.0.0.0:8000
     restart: on-failure
     volumes:

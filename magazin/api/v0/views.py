@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics, permissions
-from .permissions import IsSuperUserOrReadOnly
+from .permissions import IsSuperUser
 
 
 from .serializers import ProductsSerializer, DetailProductSerializer, CategoriesSerializer, \
@@ -35,12 +35,18 @@ class ListCategoryAPIView(APIView):
         serializer = CategoriesSerializer(categories, many=True)
         return Response(serializer.data)
 
+    def put(self, request):
+        serializer = CategoriesSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
+
 class OrdersListAPIViewGEN(generics.ListCreateAPIView):
     """смотрим и создаём заказы"""
 
     queryset = Order.objects.all()
     serializer_class = OrdersSerializer
-    permission_classes = [IsSuperUserOrReadOnly]
+    permission_classes = [IsSuperUser]
 
 
 class OrderControlAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -48,7 +54,7 @@ class OrderControlAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrdersSerializer
     lookup_url_kwarg = "order_id"
     lookup_field = "id"
-    permission_classes = [IsSuperUserOrReadOnly]
+    permission_classes = [IsSuperUser]
 
 
 class DetailOrderItemAPIView(APIView):

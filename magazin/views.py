@@ -20,10 +20,10 @@ class HomeView(View):
 
     def get(self,request):
         categories = Category.objects.all()
-
+        new = Product.objects.last()
         return render(request,
                       "home.html",
-                      {"categories": categories}
+                      {"categories": categories, "new": new}
                       )
 
 

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content-head %}
+    <h1>Проверка заказа </h1>
+    <p> </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="order-info">
+            <div class="row g-3">
+                <div class="col">
+                    <label for="exampleDataList" class="form-label">Введите номер заказа</label>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="id" aria-label="Номер заказа">
+                </div>
+                <div class="col">
+                    <input type="submit" value="Проверить">
+                </div>
+            </div>
+        </div>
+    </form>
+    <p> </p>
+    <p> </p>
+    <h3>Статус вашего заказа: {{ order.status }} </h3>
+
+{% endblock %}
